@@ -27,8 +27,8 @@ public class ColorTest implements Runnable {
     static int BASE2 = (int) Math.pow(BASE, 2);
     static int BASE3 = (int) Math.pow(BASE, 3);
     static int MAXZ = 44;
-    static int MAXY = 120;
-    static int MAXX = 30;
+    static int MAXY = 80;
+    static int MAXX = 20;
     static BufferedImage spaceMap = new BufferedImage(1000, 900, BufferedImage.TYPE_INT_RGB);
     static BufferedImage testImage = new BufferedImage(1000, 900, BufferedImage.TYPE_INT_RGB);
     static BufferedImage[] display = new BufferedImage[MAXZ];
@@ -82,46 +82,118 @@ public class ColorTest implements Runnable {
             workFaces[i] = 0;
         }
         
-         for(int y = 0; y < 10; y+=2){
+        for(int z = 0; z < MAXZ; z++){
+        
+            for(int y = 0; y < 2; y++){
+                for(int x = 0; x < MAXX; x++){
+                    //for(int z = 0; z < MAXZ; z++){
+                        space[0][z][y * (MAXY - 1)][x].faceIn[62] = true;
+                        space[1][z][y * (MAXY - 1)][x].faceIn[62] = true;
+                        
+                   // }
+                }
+            }
+            for(int x = 0; x < 2; x++){
+                for(int y = 0; y < MAXY; y++){
+                    space[0][z][y][x * (MAXX - 1)].faceIn[62] = true;
+                    space[1][z][y][x * (MAXX - 1)].faceIn[62] = true;
+                }
+            }
+        }
+        /*
+        for(int z = 0; z < MAXZ; z++){
+            for(int y = (MAXY / 10) * 4; y < (MAXY / 10) * 9; y += MAXY / 5){
+                for(int x = MAXX / 3; x < (MAXX / 3) + 3; x++){
+                    space[0][z][y][x].faceIn[60] = true;
+                    //space[0][z][y][x].faceIn[61] = true;
+                    space[0][z][y][x].faceIn[40] = true;
+                    space[0][z][y][x].faceIn[80] = true;
+                    space[0][z][y][x].faceIn[35] = true;
+                    space[0][z][y][x].faceIn[85] = true;
+                    space[0][z][y][x].faceIn[16] = true;
+                    space[0][z][y][x].faceIn[10] = true;
+                    space[0][z][y][x].faceIn[3] = true;
+                    space[0][z][y][x].faceIn[12] = true;
+                    space[0][z][y][x].faceIn[9] = true;
+                    space[0][z][y][x].faceIn[20] = true;
+                    space[0][z][y][x].faceIn[23] = true;
+                    space[0][z][y][x].faceIn[105] = true;
+                }
+            }
+        }
+        */
+        /*
+        
+         for(int y = 0; y < 10; y+=3){
          // for(int x = 0; x < 10; x+=2){
          for(int f = 0; f < BASE3; f++){
          for(int z = 0; z < MAXZ / 2; z++){
          if(f / BASE2 != 2){
          //space[0][z][(MAXY / 2) + y][(MAXX / 2) + x].faceIn[f] = true;
              
-         space[0][z][(MAXY / 2) + y][(MAXX / 2) - 3].faceOut[f] = true;
-         space[0][z + (MAXZ / 2)][y + 3][(MAXX / 2) + 2].faceOut[f] = true;
+         space[0][z][(MAXY / 2) + y][(MAXX / 2) - 3].faceIn[f] = true;
+         space[0][z + (MAXZ / 2)][y + 3][(MAXX / 2) + 2].faceIn[f] = true;
          }
          }
          }
         }
-        
+        */
          
          
          
         //loadImage();
         //translateImage(pic);
 
+        /*
         for (int z = 0; z < MAXZ; z++) {
-            for (int y = MAXY / 5; y < (MAXY / 5) * 2; y++) {
+            for (int y = MAXY / 5; y < (MAXY / 5) * 4; y+= 2) {
                 space[0][z][y][(MAXX / 10) * 8].faceIn[62] = true;
                 space[1][z][y][(MAXX / 10) * 8].faceIn[62] = true;
             }
         }
 
         for (int y = MAXY / 5; y < (MAXY / 5) * 4; y++) {
+            if(y == MAXY / 5){
+                for(int x = 20; x < 24; x++){
+                    for(int i = 0; i < BASE; i++){
+                        space[0][(MAXZ/3) + i][y + 3][x].faceIn[(BASE * i) + i] = true;
+                        space[0][(MAXZ/3) + i][y + 3][x].faceIn[(BASE * i) + 100 + i] = true;
+                       // space[0][(MAXZ/3) + i][y + 3][x].faceIn[120 + i] = true;
+                       // space[0][(MAXZ/3) + i][y + 3][x].faceIn[20 + i] = true;
+                        
+                    }
+                    for(int z = 0; z < MAXZ; z++){
+                        space[0][z][y][x].zyxBlock[0] = true;
+                        space[1][z][y][x].zyxBlock[0] = true;
+                        space[0][z][y][x].zyxBlock[2] = true;
+                        space[1][z][y][x].zyxBlock[2] = true;
+                        
+                        space[0][z][y + (MAXY / 4)][x].zyxBlock[0] = true;
+                        space[1][z][y + (MAXY / 4)][x].zyxBlock[0] = true;
+                        space[0][z][y + (MAXY / 4)][x].zyxBlock[2] = true;
+                        space[1][z][y + (MAXY / 4)][x].zyxBlock[2] = true;
+                        
+                        space[0][z][y][x].faceIn[62] = true;
+                        space[1][z][y][x].faceIn[62] = true;
+                    
+                        space[0][z][y + (MAXY / 4)][x].faceIn[62] = true;
+                        space[1][z][y + (MAXY / 4)][x].faceIn[62] = true;
+                    }
+                }
+            }
             for (int x = MAXX / 10; x < (MAXX / 10) * 6; x += (MAXX / 10) * 2) {
                 for (int z = 0; z < MAXZ; z++) {
-                    space[0][z][y][x].zyxBlock[0] = true;
-                    space[1][z][y][x].zyxBlock[0] = true;
-                    space[0][z][y][x].zyxBlock[1] = true;
-                    space[1][z][y][x].zyxBlock[1] = true;
+                    space[0][z][(y/2) *2][x].zyxBlock[0] = true;
+                    space[1][z][(y/2) *2][x].zyxBlock[0] = true;
+                    space[0][z][(y/2) *2][x].zyxBlock[1] = true;
+                    space[1][z][(y/2) *2][x].zyxBlock[1] = true;
                     
-                    space[0][z][y][x].faceIn[62] = true;
-                    space[1][z][y][x].faceIn[62] = true;
+                    space[0][z][(y/2) *2][x].faceIn[62] = true;
+                    space[1][z][(y/2) *2][x].faceIn[62] = true;
                 }
             }
         }
+        */
         /*
         for (int y = MAXY / 5; y < (MAXY / 5) * 4; y += MAXY / 5) {
             for (int x = MAXX / 10; x < (MAXX / 10) * 6; x++) {
@@ -213,63 +285,7 @@ public class ColorTest implements Runnable {
         }
     }
 
-    public static void counterloop() {
 
-        if (counter[0] < MAXZ) {
-            if (counter[1] < MAXY) {
-                if (counter[2] < MAXX) {
-                    if (counter[3] < (BASE3 * 100)) {
-                        //for (int f = 0; f < BASE3; f++) {
-                        if (counter[3] == 0) {
-                            clearAll();
-                            space[0][counter[0]][counter[1]][counter[2]].faceOut[counter[3]] = true;
-                            System.out.println("Switching on space[0][" + counter[0] + "][" + counter[1] + "][" + counter[2] + "].faceOut[" + counter[3] + "]");
-
-                        } else if (counter[3] % 100 == 0) {
-                            clearAll();
-                            space[0][counter[0]][counter[1]][counter[2]].faceOut[counter[3] / 100] = true;
-                            System.out.println("Switching on space[0][" + counter[0] + "][" + counter[1] + "][" + counter[2] + "].faceOut[" + counter[3] / 100 + "]");
-                            //counter[3]++;
-                        }
-                        // }
-                    } else {
-                        if (counter[2] >= MAXX - 1) {
-                            if (counter[1] >= MAXY - 1) {
-                                if (counter[0] >= MAXZ - 1) {
-                                    java.util.Arrays.fill(counter, 0);
-                                } else {
-                                    counter[0]++;
-                                    counter[1] = 0;
-                                    counter[2] = 0;
-                                    counter[3] = 0;
-                                }
-                            } else {
-                                counter[1]++;
-                                counter[2] = 0;
-                                counter[3] = 0;
-                            }
-                        } else {
-                            counter[2]++;
-                            counter[3] = 0;
-                        }
-                    }
-                }
-            }
-        }
-        counter[3]++;
-    }
-
-    public static void fireFaces(int z, int y, int x) {
-        loopcounter = 0;
-        clearAll();
-        //System.out.println("Now Firing space[0][" + z + "][" + testY + "][" + testX + "]");
-        for (int i = 0; i < BASE3; i++) {
-            if (loopcounter == i * 1000) {
-                clearAll();
-                space[0][z][y][x].faceOut[i] = true;
-            }
-        }
-    }
 
     public static void sortAttractProcess() {
 
@@ -619,7 +635,8 @@ public class ColorTest implements Runnable {
          // for(int i = 0; i < 5; i++){
              if(!D){
                  for(int i = 0; i < 50; i++){
-         space[0][(int) Math.floor(Math.random() * MAXZ)][(int) Math.floor(Math.random() * MAXY)][(int) Math.floor(Math.random() * MAXX)].faceIn[(int) Math.floor(Math.random() * BASE3)] = true;
+                     space[0][MAXZ / 3][MAXY / 6][MAXX / 5].faceIn[(int)(Math.random() * BASE3)] = true;
+         //space[0][(int) Math.floor(Math.random() * MAXZ)][(int) Math.floor(Math.random() * MAXY)][(int) Math.floor(Math.random() * MAXX)].faceOut[(int) Math.floor(Math.random() * BASE3)] = true;
          // }
                  }
              } 
@@ -628,39 +645,10 @@ public class ColorTest implements Runnable {
          }
          
         loopcounter++;
-
-        /*
-         for(int t = 0; t < BASE2; t++){
-         space[0][2][4][0].faceOut[t] = true;
-                     
-         space[0][2][4][0].faceOut[(t * BASE) + 4] = true;
-                     
-         space[0][2][4][0].faceOut[((BASE3 - 1) - t)] = true;
-         }
-         */
-        //               space[0][3][3][3].faceOut[(int)(Math.floor(Math.random() * BASE3))] = true;
-        //               loopcounter++;
-        //           }
-
-        /*
-         if(loopcounter >= 40){
-         if(loopcounter % 10 == 0){
-         space[0][(int) Math.floor(Math.random() * MAXZ)][(int) Math.floor(Math.random() * MAXY)][(int) Math.floor(Math.random() * MAXX)].faceIn[(int) Math.floor(Math.random() * BASE3)] = true;
-                 
-         //System.out.println("" + loopcounter);
-         loopcounter++;
-         } else {
-         loopcounter++;
-         }
-                
-         }
-              
-         if(loopcounter > 200000){
-         loopcounter = 50;
-                 
-         }
-         */
-        if (loopcounter > 20) {
+        
+       
+         
+        //if (loopcounter > 20) {
             //if (drawSwitch == true) {
             //space[0][0][0][0].faceOut[(int)(Math.random() * BASE3)] = true;
             //space[0][(int)Math.random() * MAXZ][(int)Math.random() * MAXY][(int)Math.random() * MAXX].faceOut[(int)Math.random() * BASE2] = true;
@@ -672,12 +660,12 @@ public class ColorTest implements Runnable {
             // sortAttractProcess();
             processSpace();
             // }
-        }
+        //}
 
-        //drawMap4();
-        flipDrawSwitch();
+        drawMap4();
+       // flipDrawSwitch();
 
-        //frame.repaint();
+        frame.repaint();
         //System.out.println("loopcounter == " + loopcounter);
     }
 
@@ -701,7 +689,7 @@ public class ColorTest implements Runnable {
                         //g2d.drawLine(0, (drawY - (MAXZ + 4) * i) - 1, 1500, (drawY - (MAXZ + 4) * i) - 1);
                         //g2d.drawLine(drawX + (x * 90) - 5, 0, drawX + (x * 90) - 5, 800);
                         if (!D) {
-                            if (space[0][z][y][x].faceIn[f]) {
+                            if (space[0][z][y][x].faceOut[f]) {
 
                                 if (z >= 22) {
                                     pixelrgba[2] += (z - 21);
@@ -710,15 +698,15 @@ public class ColorTest implements Runnable {
                                 }
                             }
 
-                            if (space[0][z][y][x].faceOut[f]) {
+                            if (space[0][z][y][x].faceIn[f]) {
                                 if (z >= 22) {
                                     pixelrgba[0] += (z - 21);
                                 } else {
                                     pixelrgba[1] += z + 1;
                                 }
                             }
-                        } else {
-                            if (space[1][z][y][x].faceIn[f]) {
+                        } else if (D){
+                            if (space[1][z][y][x].faceOut[f]) {
 
                                 if (z >= 22) {
                                     pixelrgba[2] += (z - 21);
@@ -727,7 +715,7 @@ public class ColorTest implements Runnable {
                                 }
                             }
 
-                            if (space[1][z][y][x].faceOut[f]) {
+                            if (space[1][z][y][x].faceIn[f]) {
                                 if (z >= 22) {
                                     pixelrgba[0] += (z - 21);
                                 } else {
@@ -737,11 +725,12 @@ public class ColorTest implements Runnable {
                         }
 
                     }
+                    
                     //spaceMap.setRGB(100+x, 100+y, new java.awt.Color(100,100,100).getRGB());
-                    // rgbarray[((x * BASE2) + (f % BASE2)) * ((y * BASE) + (int)(f / BASE2))] = (pixelrgb[0] << 16) | (pixelrgb[1] << 8) | pixelrgb[2];
+                    // rgbarray[ (f % BASE2) + (((x * BASE2) + (f / BASE2) + ((f / BASE2) * MAXX) * BASE2) * (y + 1))] = (pixelrgba[3] << 24) | (pixelrgba[0] << 16) | (pixelrgba[1] << 8) | pixelrgba[2];
+                    
                     spaceMap.setRGB(10 + (x * BASE2) + (f % BASE2), 10 + (y * BASE) + (int) (f / BASE2),
-                            //  new java.awt.Color(100,100,100).getRGB());
-
+                           // ((x * BASE2) + (f % BASE2)) * (1 +(y * BASE) + (int)(f / BASE2))                     
                             new java.awt.Color(pixelrgba[0], pixelrgba[1], pixelrgba[2], pixelrgba[3]).getRGB());
 
                 }
@@ -750,7 +739,7 @@ public class ColorTest implements Runnable {
                 // drawY += MAXZ + 4;
             }
         }
-        //spaceMap.setRGB(0, 0, (MAXX ) * BASE2, (MAXY - 1) * BASE, rgbarray, 0, (MAXX - 1) * BASE2);
+       // spaceMap.setRGB(30, 30, (MAXX ) * BASE2, (MAXY ) * BASE, rgbarray, 0, (MAXX * BASE2) + BASE2 - 1);
 
     }
 
@@ -770,24 +759,47 @@ public class ColorTest implements Runnable {
                         if(space[0][z][y][x].zyxBlock[0] && space[0][z][y][x].zyxBlock[1]){
                             for(int f = 0; f < BASE3; f++){
                                 if(space[0][z][y][x].faceIn[f]){
+                                    if(Space.mapsBase5ZYWall[f] > 0){
                                     space[0][z][y][x].faceIn[f] = false;
                                     space[1][z][y][x].faceOut[Space.mapsBase5ZYWall[f]] = true;
+                                    }
                                 }
                             }
-                        } else
+                        } else if(space[0][z][y][x].zyxBlock[0] && space[0][z][y][x].zyxBlock[2]){
+                            for(int f = 0; f < BASE3; f++){
+                                if(space[0][z][y][x].faceIn[f]){
+                                    if(Space.mapsBase5ZXWall[f] > 0){
+                                    space[0][z][y][x].faceIn[f] = false;
+                                    space[0][z][y][x].faceOut[Space.mapsBase5ZXWall[f]] = true;
+                                }
+                                }
+                            }
+                        }else if(space[0][z][y][x].zyxBlock[1] && space[0][z][y][x].zyxBlock[2]){
+                            for(int f = 0; f < BASE3; f++){
+                                if(space[0][z][y][x].faceIn[f]){
+                                    if(Space.mapsBase5YXWall[f] > 0){
+                                    space[0][z][y][x].faceIn[f] = false;
+                                    space[1][z][y][x].faceOut[Space.mapsBase5YXWall[f]] = true;
+                                }
+                                    }
+                            }
+                        }else 
                         if (space[0][z][y][x].faceIn[(BASE3 - 1) / 2]) {
                             for (int f = 0; f < BASE3; f++) {
-                                if(f != (BASE3 - 1) / 2){
+                               // if(f != (BASE3 - 1) / 2){
+                                
                                 if (space[0][z][y][x].faceIn[f]) {
+                                    if(Space.mapsBase5Twist[f] > 0){
                                     space[0][z][y][x].faceIn[f] = false;
-                                    space[1][z][y][x].faceOut[Space.mapsBase5[f]] = true;
+                                    space[1][z][y][x].faceOut[Space.mapsBase5Twist[f]] = true;
                                 }
                                 }
                             }
                         } else {
                             for (int f = 0; f < BASE3; f++) {
-                                if(f != (BASE3 - 1) / 2){
+                               
                                 if (space[0][z][y][x].faceIn[f]) {
+                                     if(f != (BASE3 - 1) / 2){
                                     space[0][z][y][x].faceIn[f] = false;
                                     space[1][z][y][x].faceOut[(BASE3 - 1) - f] = true;
                                 }
@@ -817,24 +829,46 @@ public class ColorTest implements Runnable {
                         if(space[1][z][y][x].zyxBlock[0] && space[1][z][y][x].zyxBlock[1]){
                             for(int f = 0; f < BASE3; f++){
                                 if(space[1][z][y][x].faceIn[f]){
+                                    if(Space.mapsBase5ZYWall[f] > 0){
                                     space[1][z][y][x].faceIn[f] = false;
                                     space[0][z][y][x].faceOut[Space.mapsBase5ZYWall[f]] = true;
                                 }
+                                }
                             }
-                        } else 
+                        } else if(space[1][z][y][x].zyxBlock[0] && space[1][z][y][x].zyxBlock[2]){
+                            for(int f = 0; f < BASE3; f++){
+                                if(space[1][z][y][x].faceIn[f]){
+                                    if(Space.mapsBase5ZXWall[f] > 0){
+                                    space[1][z][y][x].faceIn[f] = false;
+                                    space[1][z][y][x].faceOut[Space.mapsBase5ZXWall[f]] = true;
+                                }
+                                }
+                            }
+                        }else if(space[1][z][y][x].zyxBlock[1] && space[1][z][y][x].zyxBlock[2]){
+                            for(int f = 0; f < BASE3; f++){
+                                if(space[1][z][y][x].faceIn[f]){
+                                    if(Space.mapsBase5YXWall[f] > 0){
+                                    space[1][z][y][x].faceIn[f] = false;
+                                    space[0][z][y][x].faceOut[Space.mapsBase5YXWall[f]] = true;
+                                }
+                                }
+                            }
+                        } else
                         if (space[1][z][y][x].faceIn[(BASE3 - 1) / 2]) {
                             for (int f = 0; f < BASE3; f++) {
-                                if(f != (BASE3 - 1) / 2){
+                                //if(f != (BASE3 - 1) / 2){
                                 if (space[1][z][y][x].faceIn[f]) {
+                                    if(Space.mapsBase5Twist[f] > 0){
                                     space[1][z][y][x].faceIn[f] = false;
-                                    space[0][z][y][x].faceOut[Space.mapsBase5[f]] = true;
+                                    space[0][z][y][x].faceOut[Space.mapsBase5Twist[f]] = true;
                                 }
                                 }
                             }
                         } else {
                             for (int f = 0; f < BASE3; f++) {
-                                if(f != (BASE3 - 1) / 2){
+                                
                                 if (space[1][z][y][x].faceIn[f]) {
+                                    if(f != (BASE3 - 1) / 2){
                                     space[1][z][y][x].faceIn[f] = false;
                                     space[0][z][y][x].faceOut[(BASE3 - 1) - f] = true;
                                 }
@@ -960,18 +994,20 @@ public class ColorTest implements Runnable {
 
         while (t == loop) {
             try {
-                //update();
+                update();
                 //if(loopcounter % 10 == 0){
-                drawMap4();
+                //drawMap4();
                 //}
                 //Thread.sleep(200);
-                frame.repaint();
-                update();
+                //frame.repaint();
+               // update();
                 if (!D) {
                     D = true;
                 } else {
                     D = false;
                 }
+                drawMap4();
+                frame.repaint();
                 Thread.sleep(0);
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -3122,9 +3158,9 @@ public class ColorTest implements Runnable {
                                                 mody = 0;
                                             }
 
-                                            if (i % BASE == 0) {
+                                            if (i % BASE < 2) {
                                                 modx = -1;
-                                            } else if ((i + 1) % BASE == 0) {
+                                            } else if ((i + 2) % BASE < 2) {
                                                 modx = 1;
                                             } else {
                                                 modx = 0;
